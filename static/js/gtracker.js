@@ -39,7 +39,7 @@ gtracker.test_download = function test_download (record) {
 gtracker.test_upload = function test_upload (record) {
     request = window.superagent
     var start = new Date().getTime(),
-        uploadData = new Array(1000000);
+        uploadData = new Array(10000);
     for (var i = 0; i < uploadData.length; i++) {
         uploadData[i] = Math.floor(Math.random() * 256)
     }
