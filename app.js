@@ -1,4 +1,4 @@
-var express = require('express')
+var express = require("express")
 var morgan = require("morgan")
 
 exports.get_instance = function get_instance() {
@@ -8,7 +8,11 @@ exports.get_instance = function get_instance() {
     router.post('/track', function(req, res) {
         res.end("boffo")
     })
+    router.use('/permanentfile', function(req, res) {
+        res.end("*satisfying sound of paper crinkling before throwing it away*")
+    })
     app.use('/', router)
+    app.use('/static',express.static('static'))
 
     app.use(function(err, req, res, next) {
         console.error(err.stack)
