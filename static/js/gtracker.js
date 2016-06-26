@@ -8,8 +8,8 @@ var gtracker = {},
             1000: "red"
         },
         speed: {
-            10: "green",
-            5: "orange",
+            5: "green",
+            2: "orange",
             1: "red"
 
         }
