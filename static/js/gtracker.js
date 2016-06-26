@@ -1,6 +1,67 @@
 
 var gtracker = {},
-    request = window.superagent
+    request = window.superagent,
+    cutoffs = {
+        ping: {
+            100: "green",
+            500: "orange",
+            1000: "red"
+        },
+        speed: {
+            10: "green",
+            5: "orange",
+            1: "red"
+
+        }
+    }
+
+function sort_number(a,b) {
+    return a.cutoff - b.cutoff
+}
+
+pings = []
+for (var p in cutoffs.ping) {
+    pings.push({
+        cutoff: Number(p),
+        color: cutoffs.ping[p]
+    })
+}
+pings = pings.sort(sort_number)
+
+speeds = []
+for (var p in cutoffs.speed) {
+    speeds.push({
+        cutoff: Number(p),
+        color: cutoffs.speed[p]
+    })
+}
+speeds = speeds.sort(sort_number)
+speeds.reverse()
+
+function cutoff_ping(ping) {
+    for (i in pings) {
+        var p = pings[i]
+        if (ping <= p.cutoff) return p.color
+    }
+    return pings[pings.length - 1].color
+}
+
+function cutoff_download(speed) {
+    for (i in speeds) {
+        var s = speeds[i]
+        if (speed >= s.cutoff) return s.color
+    }
+    return speeds[speeds.length - 1].color
+}
+
+function cutoff_upload(speed) {
+    speed *= 10
+    for (i in speeds) {
+        var s = speeds[i]
+        if (speed >= s.cutoff) return s.color
+    }
+    return speeds[speeds.length - 1].color
+}
 
 gtracker.get_location = function get_location (cb) {
     if (navigator.geolocation) {
@@ -29,9 +90,12 @@ gtracker.test_download = function test_download (record) {
     request
         .get('/static/img/download.jpg')
         .end(function(err, res) {
+            if (err) return console.log(err)
             var mbps = gtracker.calc_speed(start, res.text.length)
             record.download = mbps
-            $('download').text(mbps + " mbps download")
+            $('download')
+                .text(mbps + " mbps download")
+                .css("background", cutoff_download(mbps))
             gtracker.test_upload(record)
         })
 }
@@ -49,7 +113,9 @@ gtracker.test_upload = function test_upload (record) {
         .end(function(err, res) {
             var mbps = gtracker.calc_speed(start, uploadData.length)
             record.upload = mbps
-            $('upload').text(mbps + " mbps upload")
+            $('upload')
+                .text(mbps + " mbps upload")
+                .css("background", cutoff_upload(mbps))
             gtracker.test_ping(record)
         })
 }
@@ -61,7 +127,9 @@ gtracker.test_ping = function test_ping (record) {
         .get('/permanentfile')
         .end(function(err, res) {
             record.ping = new Date().getTime() - start
-            $('ping').text(record.ping + " msecs ping")
+            $('ping')
+                .text(record.ping + " msecs ping")
+                .css("background", cutoff_ping(record.ping))
             gtracker.track(record)
         })
 }

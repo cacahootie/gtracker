@@ -8,7 +8,10 @@ exports.get_instance = function get_instance() {
     router.post('/track', function(req, res) {
         res.end("boffo")
     })
-    router.use('/permanentfile', function(req, res) {
+    router.post('/permanentfile', function(req, res) {
+        res.end("*satisfying sound of paper crinkling before throwing it away*")
+    })
+    router.get('/permanentfile', function(req, res) {
         res.end("*satisfying sound of paper crinkling before throwing it away*")
     })
     app.use('/', router)
