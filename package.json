@@ -1,0 +1,19 @@
+{
+  "name": "gtracker",
+  "version": "0.0.1",
+  "description": "track wireless network performance",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cacahootie/gtracker.git"
+  },
+  "author": "Brad Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cacahootie/gtracker/issues"
+  },
+  "homepage": "https://github.com/cacahootie/gtracker"
+}
