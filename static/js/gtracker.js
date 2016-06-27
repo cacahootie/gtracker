@@ -78,6 +78,10 @@ gtracker.calc_speed = function calc_speed (start, size) {
 }
 
 gtracker.run_test = function run_test () {
+    if (!document.hasFocus()) {
+        console.log('Window not in focus, pause 10 secs')
+        return window.setTimeout(gtracker.run_test_wait, 10000)
+    }
     navigator.geolocation.getCurrentPosition(function (position) {
         gtracker.test_download({
             "lat": position.coords.latitude,
@@ -147,13 +151,13 @@ gtracker.track = function track (record) {
         .end(function(err, res){
             console.log(record)
         })
+    window.setTimeout(gtracker.run_test, 10000)
 }
 
 gtracker.run_test_wait = function run_test_wait () {
     gtracker.run_test()
-    window.setTimeout(gtracker.run_test_wait, 10000)
 }
 
 window.onload = function() {
-    gtracker.run_test_wait()
+    gtracker.run_test()
 }
