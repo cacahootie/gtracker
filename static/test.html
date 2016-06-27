@@ -9,11 +9,33 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.0.0/superagent.js"></script>
+        <style>
+            h3, download, upload, ping {
+                text-align: center;
+                display: block;
+            }
+
+            div.outer {
+                padding-top: 75px;
+                margin-bottom: 10px;
+                height: 200px;
+                width: 100%;
+            }
+        </style>
     </head>
-    <body>
-        <div><download></download></div>
-        <div><upload></upload></div>
-        <div><ping></ping></div>
+    <body style="width:100%; height:100%;">
+        <div class="outer dl_outer">
+            <h3>Download (mbps)</h3>
+            <download></download>
+        </div>
+        <div class="outer ul_outer">
+            <h3>Upload (mbps)</h3>
+            <upload></upload>
+        </div>
+        <div class="outer pi_outer">
+            <h3>Ping (msecs)</h3>
+            <ping></ping>
+        </div>
         <script type="text/javascript" src="/static/js/gtracker.js"></script>
     </body>
 </html>

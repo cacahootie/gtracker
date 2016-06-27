@@ -94,7 +94,8 @@ gtracker.test_download = function test_download (record) {
             var mbps = gtracker.calc_speed(start, res.text.length)
             record.download = mbps
             $('download')
-                .text(mbps + " mbps download")
+                .text(mbps)
+            $('div.dl_outer')
                 .css("background", cutoff_download(mbps))
             gtracker.test_upload(record)
         })
@@ -114,7 +115,8 @@ gtracker.test_upload = function test_upload (record) {
             var mbps = gtracker.calc_speed(start, uploadData.length)
             record.upload = mbps
             $('upload')
-                .text(mbps + " mbps upload")
+                .text(mbps)
+            $('div.ul_outer')
                 .css("background", cutoff_upload(mbps))
             gtracker.test_ping(record)
         })
@@ -128,7 +130,8 @@ gtracker.test_ping = function test_ping (record) {
         .end(function(err, res) {
             record.ping = new Date().getTime() - start
             $('ping')
-                .text(record.ping + " msecs ping")
+                .text(record.ping)
+            $('div.pi_outer')
                 .css("background", cutoff_ping(record.ping))
             gtracker.track(record)
         })
