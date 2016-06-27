@@ -72,7 +72,9 @@ gtracker.get_location = function get_location (cb) {
 }
 
 gtracker.calc_speed = function calc_speed (start, size) {
-    return (size * 8) / ((new Date().getTime() - start) / 1000) / 1000000
+    return Math.round(
+        (size * 8) / ((new Date().getTime() - start) / 1000) / 1000000 * 10
+    ) / 10
 }
 
 gtracker.run_test = function run_test () {
