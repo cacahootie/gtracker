@@ -1,6 +1,7 @@
 
+var item_template = $('#item_template').text()
+
 Object.keys(localStorage).forEach(function(d) {
-    console.log(d)
-    $('ul').append('<li></li>')
-        .text(d)
+    var item = JSON.parse(localStorage[d])
+    $('#records').append(nunjucks.renderString(item_template, item))
 })

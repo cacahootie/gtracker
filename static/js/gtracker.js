@@ -145,7 +145,17 @@ gtracker.test_ping = function test_ping (record) {
 gtracker.track = function track (record) {
     record.obstime = new Date().toISOString()
     localStorage.setItem("gtrack_"+record.obstime, JSON.stringify(record))
-    window.setTimeout(gtracker.run_test, 10000)
+    var waiter = function (i) {
+        if (i == 9) {
+            $('div.timer-cell').removeClass('active')
+            gtracker.run_test()
+        } else {
+            $($('div.timer-cell')[i]).addClass('active')
+        }
+    }
+    _.each(_.range(10), function(d) {
+        setTimeout(function () { waiter(d) }, d * 1000)
+    })
 }
 
 gtracker.run_test_wait = function run_test_wait () {

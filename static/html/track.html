@@ -25,13 +25,48 @@
             div.outer {
                 padding-top: 5vh;
                 margin: 1vh 1vw 1vh 1vw;
-                height: 27vh;
+                height: 25vh;
                 width: 98vw;
                 border-radius: 2px;
             }
+
+            div.timer {
+                background-color: lightblue;
+                margin: 1vh 1vw 1vh 1vw;
+                height: 5vh;
+                width: 98vw;
+                border-radius: 2px;
+            }
+
+            div.timer-cell {
+                background: gray;
+                height: 4vh;
+                width: 8.8vw;
+                float: left;
+                margin-right: 1vw;
+                margin-left: 1vw;
+                margin-top: 0.5vw;
+                margin-bottom: 0.5vw;
+            }
+
+            div.active {
+                background: red;
+            }
+
         </style>
     </head>
     <body style="width:100%; height:100%;">
+        <div class="timer">
+            <div class="timer-cell">&nbsp;</div>
+            <div class="timer-cell">&nbsp;</div>
+            <div class="timer-cell">&nbsp;</div>
+            <div class="timer-cell">&nbsp;</div>
+            <div class="timer-cell">&nbsp;</div>
+            <div class="timer-cell">&nbsp;</div>
+            <div class="timer-cell">&nbsp;</div>
+            <div class="timer-cell">&nbsp;</div>
+            <div class="timer-cell">&nbsp;</div>
+        </div>
         <div class="outer dl_outer">
             <h3>Download (mbps)</h3>
             <download></download>
