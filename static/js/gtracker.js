@@ -79,7 +79,6 @@ gtracker.calc_speed = function calc_speed (start, size) {
 
 gtracker.run_test = function run_test () {
     if (!document.hasFocus()) {
-        console.log('Window not in focus, pause 10 secs')
         return window.setTimeout(gtracker.run_test_wait, 10000)
     }
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -145,12 +144,7 @@ gtracker.test_ping = function test_ping (record) {
 
 gtracker.track = function track (record) {
     record.obstime = new Date().toISOString()
-    request
-        .post('/track')
-        .send(record)
-        .end(function(err, res){
-            console.log(record)
-        })
+    localStorage.setItem("gtrack_"+record.obstime, JSON.stringify(record))
     window.setTimeout(gtracker.run_test, 10000)
 }
 
