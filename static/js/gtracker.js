@@ -15,7 +15,8 @@ var gtracker = {},
         }
     }
 
-new NoSleep().enable()
+var nosleep = new NoSleep()
+nosleep.enable()
 
 function sort_number(a,b) {
     return a.cutoff - b.cutoff
