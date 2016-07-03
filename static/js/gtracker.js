@@ -117,7 +117,7 @@ gtracker.test_upload = function test_upload (record) {
         uploadData[i] = Math.floor(Math.random() * 256)
     }
     request
-        .post('/permanentfile')
+        .post('/static/img/download.jpg')
         .send(uploadData)
         .end(function(err, res) {
             var mbps = gtracker.calc_speed(start, uploadData.length)
