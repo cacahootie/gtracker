@@ -148,9 +148,11 @@ gtracker.test_ping = function test_ping (record) {
 gtracker.track = function track (record) {
     record.obstime = new Date().toISOString()
     localStorage.setItem("gtrack_"+record.obstime, JSON.stringify(record))
+    $('div.timer-cell').removeClass('loading')
     var waiter = function (i) {
         if (i == 9) {
             $('div.timer-cell').removeClass('active')
+            $('div.timer-cell').addClass('loading')
             gtracker.run_test()
         } else {
             $($('div.timer-cell')[i]).addClass('active')
